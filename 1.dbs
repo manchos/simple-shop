@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="123" id="Project_4c041a6" template="Default" database="Sqlite" >
+	<schema name="Default" schemaname="Default" >
+		<table name="Articles" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="title" type="integer" jt="4" />
+			<column name="refer" type="integer" jt="4" />
+			<column name="description" type="text" jt="-1" />
+			<column name="product" type="text" jt="-1" mandatory="y" />
+			<index name="Pk_Articles_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="Idx_Articles_product" unique="NORMAL" >
+				<column name="product" />
+			</index>
+			<fk name="Fk_Articles" to_schema="Default" to_table="Products" >
+				<fk_column name="product" pk="id" />
+			</fk>
+		</table>
+		<table name="Categories" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="Name" type="varchar" length="200" jt="12" />
+			<column name="feature" type="integer" jt="4" />
+			<column name="parent_category" type="tinyint" jt="-6" />
+			<index name="Pk_category_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="Features" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="category" type="integer" jt="4" />
+			<column name="name" type="varchar" length="100" jt="12" />
+			<index name="Pk_Features_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="Idx_Features_category" unique="NORMAL" >
+				<column name="category" />
+			</index>
+			<fk name="Fk_Features" to_schema="Default" to_table="Categories" >
+				<fk_column name="category" pk="id" />
+			</fk>
+		</table>
+		<table name="Options" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" type="char" length="200" jt="1" />
+			<column name="value" type="char" length="200" jt="1" />
+			<column name="feature" type="integer" jt="4" />
+			<index name="Pk_Options_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="Idx_Options_feature" unique="NORMAL" >
+				<column name="feature" />
+			</index>
+			<fk name="Fk_Options" to_schema="Default" to_table="Features" >
+				<fk_column name="feature" pk="id" />
+			</fk>
+		</table>
+		<table name="Products" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" type="char" length="200" jt="1" mandatory="y" />
+			<column name="description" type="text" jt="-1" />
+			<column name="pruduct_modific_id" type="integer" jt="4" />
+			<column name="min_price" type="integer" jt="4" />
+			<index name="Pk_Products_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="ProductsCategories" >
+			<column name="product_id" type="integer" jt="4" mandatory="y" />
+			<column name="category_id" type="integer" jt="4" mandatory="y" />
+			<index name="Idx_ProductsCategories_product_id" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="Idx_ProductsCategories_category_id" unique="NORMAL" >
+				<column name="category_id" />
+			</index>
+			<fk name="Fk_ProductsCategories" to_schema="Default" to_table="Products" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="Fk_ProductsCategories_0" to_schema="Default" to_table="Categories" >
+				<fk_column name="category_id" pk="id" />
+			</fk>
+		</table>
+		<table name="Reviews" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="product" type="integer" jt="4" mandatory="y" />
+			<index name="Pk_Reviews_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="Idx_Reviews_product" unique="NORMAL" >
+				<column name="product" />
+			</index>
+			<fk name="Fk_Reviews" to_schema="Default" to_table="Products" >
+				<fk_column name="product" pk="id" />
+			</fk>
+		</table>
+		<table name="Table" />
+	</schema>
+	<connector name="Sqlite" database="Sqlite" host="localhost" port="7210" />
+	<layout name="Default Layout" id="Layout_5959329" show_relation="columns" >
+		<entity schema="Default" name="ProductsCategories" color="bcd5f1" x="255" y="60" />
+		<entity schema="Default" name="Options" color="bcd5f1" x="420" y="210" />
+		<entity schema="Default" name="Articles" color="bcd5f1" x="810" y="45" />
+		<entity schema="Default" name="Categories" color="bcd5f1" x="45" y="60" />
+		<entity schema="Default" name="Products" color="bcd5f1" x="540" y="60" />
+		<entity schema="Default" name="Reviews" color="bcd5f1" x="750" y="240" />
+		<entity schema="Default" name="Features" color="bcd5f1" x="165" y="270" />
+		<query id="Query_2c782f4" name="category" >
+			<query_table schema="Default" name="Products" alias="p" x="45" y="45" >
+				<column name="id" />
+				<column name="name" />
+			</query_table>
+		</query>
+	</layout>
+</project>
