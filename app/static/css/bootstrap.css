@@ -1,0 +1,29 @@
+.nav>li {
+    position: relative;
+    display: block;
+    border-left: 1px solid #dfdfdf;
+    list-style-position: inside;
+}
+
+.nav>li.active {
+    border-bottom: 2px solid #fc0;
+    list-style-position: inside;
+
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: white;
+}
+
+
+
+
+.navbar-default .navbar-nav>li:not([class])>a:focus,
+.navbar-default .navbar-nav>li:not([class])>a:hover {
+    color: #555;
+    background-color: white;
+    border-bottom: 2px solid #aaa;
+}

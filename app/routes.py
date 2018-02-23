@@ -5,3 +5,7 @@ from app import app
 def hello():
     name = 'Vlad'
     return render_template('hello.html', name=name)
+
+@app.route('/product/id/<int:product_id>')
+def product_info(product_id):
+    pass
